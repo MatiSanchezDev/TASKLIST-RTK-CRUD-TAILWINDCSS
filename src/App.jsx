@@ -1,13 +1,9 @@
-import { TaskForm } from "./Components";
-import { TaskList } from "./Components/TaskList";
+import { AppRouter } from "./routes/AppRouter";
 
 export const App = () => {
   return (
-    <div>
-      <h1>Hello World</h1>
-      <hr />
-      <TaskForm />
-      <TaskList />
-    </div>
+    <>
+      <AppRouter />
+    </>
   );
 };

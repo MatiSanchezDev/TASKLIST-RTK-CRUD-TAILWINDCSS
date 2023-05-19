@@ -1,5 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addTasks, deleteTasks } from "../Store/Slices/tasks/taskSlice";
+import {
+  addTasks,
+  deleteTasks,
+  editTasks,
+} from "../Store/Slices/tasks/taskSlice";
+import { v4 as uuid } from "uuid";
 
 export const useTasks = () => {
   const dispatch = useDispatch();
@@ -8,7 +13,7 @@ export const useTasks = () => {
   const addTask = (action) => {
     dispatch(
       addTasks({
-        uid: new Date().getTime(),
+        uid: uuid(),
         ...action,
         completed: false,
       })
@@ -16,7 +21,7 @@ export const useTasks = () => {
   };
 
   const handleEdit = (action) => {
-    console.log("Editado");
+    dispatch(editTasks(action));
   };
 
   const handleDelete = (id) => {

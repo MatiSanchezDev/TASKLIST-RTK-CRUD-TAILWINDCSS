@@ -1,21 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const taskList = {
-  uid: new Date().getTime(),
-  title: "Terminar este curso",
-  description: "Entre hoy y mañana",
-  completed: false,
-};
 
 export const tasksSlice = createSlice({
   name: "task",
   initialState: {
     activeTask: null,
-    task: [taskList],
+    task: [],
   },
   reducers: {
     addTasks: (state, { payload }) => {
       state.task.push(payload);
+    },
+    editTasks: (state, { payload }) => {
+      const { uid, title, description } = payload;
+      const foundTask = state.task.find((task) => task.uid === uid);
+      if (foundTask) {
+        foundTask.title = title;
+        foundTask.description = description;
+      }
     },
     deleteTasks: (state, { payload }) => {
       const taskFound = state.task.find((tasks) => tasks.uid === payload);
@@ -26,4 +28,4 @@ export const tasksSlice = createSlice({
   },
 });
 
-export const { addTasks, deleteTasks } = tasksSlice.actions;
+export const { addTasks, deleteTasks, editTasks } = tasksSlice.actions;
