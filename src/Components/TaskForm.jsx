@@ -37,21 +37,31 @@ export const TaskForm = () => {
   }, []);
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="bg-zinc-800 max-w-s p-4 rounded-md">
+      <label htmlFor="title" className="block text-sm font-bold mb-2">
+        Task:
+      </label>
       <input
         name="title"
         type="text"
         placeholder="Title"
         onChange={onInputChange}
         value={tasks.title}
+        className="w-full p-2 rounded-md bg-zinc-600 mb-2"
       />
+      <label htmlFor="description" className="block text-sm font-bold mb-2">
+        Description:
+      </label>
       <textarea
         name="description"
         placeholder="Description"
         onChange={onInputChange}
         value={tasks.description}
+        className="w-full p-2 rounded-md bg-zinc-600 mb-2"
       ></textarea>
-      <button>Save</button>
+      <button className="w-full bg-indigo-600 rounded-md p-1 pt-2 pb-2">
+        Save
+      </button>
     </form>
   );
 };
